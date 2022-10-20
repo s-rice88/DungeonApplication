@@ -27,7 +27,9 @@ namespace Dungeon
             //TODO Weapon Object Creation
             Weapon sword = new Weapon(8, "Long Sword", 10, false, WeaponType.Sword, 1);
             Console.WriteLine(sword);//test the ToString()
-
+            //Monster ooga = new Monster("Ooga", 10, 4, 100, 10, 4, "Very Brave Orc!");
+            //Console.WriteLine(ooga);
+            //Console.WriteLine($"{ooga.Name}'s damage is {ooga.CalcDamage()}");
             //TODO Player Object Creation
             //Character test = new Character("TastyTester",30,10,10000);
             //Console.WriteLine(test);
@@ -46,10 +48,13 @@ namespace Dungeon
                 //TODO Generate a random room the player will enter
                 Console.WriteLine();
                 Console.WriteLine(GetRoom());
-                
+                Monster ooga = new Monster("Ooga", 10, 4, 100, 10, 4, "Very Brave Orc!");
+                Console.WriteLine(ooga);
+                Console.WriteLine($"{ooga.Name}'s damage is {ooga.CalcDamage()}");
+
 
                 //Console.WriteLine(new RoomGenerator(""));//WITH LIBRARY (not best way at all)
-                
+
 
                 //TODO Select a random monster to inhabit the room
 
@@ -97,7 +102,7 @@ namespace Dungeon
                             //TODO Run Away - Attack of Opportunity
 
                             Console.WriteLine("Run Away");
-
+                            reload = true;
                             break;
 
                         case ConsoleKey.P:
@@ -118,6 +123,7 @@ namespace Dungeon
 
                         case ConsoleKey.X:
                         case ConsoleKey.E:
+                        case ConsoleKey.Escape:
 
                             //Exit
 
