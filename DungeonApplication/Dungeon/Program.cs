@@ -1,4 +1,5 @@
 ﻿using DungeonLibrary;
+using System.Globalization;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Dungeon
@@ -48,11 +49,7 @@ namespace Dungeon
                 //TODO Generate a random room the player will enter
                 Console.WriteLine();
                 Console.WriteLine(GetRoom());
-                Monster ooga = new Monster("Ooga", 10, 4, 100, 10 + 1, 4, "Very Brave Orc!");
-                Console.WriteLine(ooga);
-                Console.WriteLine($"{ooga.Name}'s damage is {ooga.CalcDamage()}");
-
-
+               
                 //Console.WriteLine(new RoomGenerator(""));//WITH LIBRARY (not best way at all)
 
 
