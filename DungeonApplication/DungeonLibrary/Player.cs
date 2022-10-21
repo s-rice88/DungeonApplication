@@ -10,15 +10,26 @@ namespace DungeonLibrary
     public class Player : Character
     {
         //FIELDS
+        private string? _playerDescription;
         //no fields
         //PROPERTIES
+        public string? PlayerDescription
+        {
+            get {  return _playerDescription; }
+            set { _playerDescription = value; }
+        }
+        public Race CharacterRace { get; set; }
         //Race CharacterRace
+        public WeaponType EquippedWeapon { get; set; }
         //EquippedWeapon Weapon
 
 
         //CONSTRUCTORS
-        public Player(string name, int hitChance, int block, int maxLife) : base(name, hitChance, block, maxLife)
+        public Player(Race characterRace, string name, string playerDescription, WeaponType equippedWeapon, int maxLife, int hitChance, int block) : base(name, hitChance, block, maxLife)
         {
+            CharacterRace = characterRace;
+            EquippedWeapon = equippedWeapon;
+            PlayerDescription = playerDescription;
             //handle unique assignment
 
             //potential expansion not required
@@ -42,11 +53,13 @@ namespace DungeonLibrary
         public override int CalcDamage()
         {
             //return a random value between the weapons min and max damage
-            return 0;
+            Random random = new Random();
+            return random.Next();
         }
         public override int CalcHitChance()
         {
-            return 0;
+            Random random = new Random();
+            return random.Next();
             //HitChance + Weapon BonusHitChance
         }
         public override string ToString()
@@ -57,7 +70,12 @@ namespace DungeonLibrary
             //case CharacterRace.Elf:
             //  description = "Describe an Elf"
             //  break;
-            return base.ToString();//+some unique description based on the players race
+            return $"------- {Name} -------\n" +
+                $"{CharacterRace}\n" +
+                $"{PlayerDescription}\n" +
+                $"Equipped Weapon: {EquippedWeapon}\n" +
+                $"Character Stats:\n" +
+                $"Life: {MaxLife} Hit Chance: {HitChance} Block: {Block}\n";
             //hint, use a switch
         }
 
