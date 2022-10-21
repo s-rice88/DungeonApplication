@@ -68,7 +68,7 @@ namespace DungeonLibrary
             // Min Damage shouldn't exceed MaxDamage, and shouldn't be less than 1
             set
             {
-                _minDamage = (value > 0 && value <= MaxDamage ? value : 1);
+                _minDamage = (value > 0 && value <= _maxDamage ? value : 1);
                 //right to left thinking if the value passed is greater than zero && less than or equal to max damage, assign that value to _minDamage
                 //otherwise assign 1 to _minDamage
                 //this.MinDamage++, += 5, could send it over MaxDamage, we don't want that

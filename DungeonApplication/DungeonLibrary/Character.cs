@@ -89,8 +89,11 @@ namespace DungeonLibrary
                 {
                     _life = MaxLife;
                 }//end else
+                
             }
         }
+
+                
 
 
         //CONSTRUCTORS
