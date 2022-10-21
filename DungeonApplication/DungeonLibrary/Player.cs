@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,36 +8,28 @@ namespace DungeonLibrary
 {
     public class Player : Character
     {
-        //FIELDS
-        private string? _playerDescription;
+        //Fields // Funny
         //no fields
-        //PROPERTIES
-        public string? PlayerDescription
-        {
-            get {  return _playerDescription; }
-            set { _playerDescription = value; }
-        }
-        public Race CharacterRace { get; set; }
+
+        //Properties // People
         //Race CharacterRace
-        public Weapon EquippedWeapon { get; set; }
         //EquippedWeapon Weapon
+        public Race CharacterRace { get; set; }
+        public Weapon EquippedWeapon { get; set; }
 
-
-        //CONSTRUCTORS
-        public Player(Race characterRace, string name, string playerDescription, Weapon equippedWeapon, int maxLife, int hitChance, int block) : base(name, hitChance, block, maxLife)
+        //Constructors // Collect
+        public Player(string name, int hitChance, int block, int maxLife, Race characterRace, Weapon equippedWeapon) : base(name, hitChance, block, maxLife)
         {
+            //handle unique assignment
             CharacterRace = characterRace;
             EquippedWeapon = equippedWeapon;
-            PlayerDescription = playerDescription;
-            //handle unique assignment
-
-            //potential expansion not required
+            //potential expansion, not required
             //switch (CharacterRace)
             //{
-            //      case Race.Elf:
-            //          HitChance += 5;
-            //          MaxHealth -= 5;
-            //          break;
+            //    case Race.Elf:
+            //        HitChance += 5;
+            //        MaxHealth -= 5;
+            //        break;
             //}
         }
         public Player()
@@ -46,16 +37,11 @@ namespace DungeonLibrary
 
         }
 
-
-
-        //METHODS
-
+        //Methods // Monkeys
         public override int CalcDamage()
         {
-            
             //return a random value between the Weapon's min and max damage
             return new Random().Next(EquippedWeapon.MinDamage, EquippedWeapon.MaxDamage + 1);
-            //player.EquippedWeapon.MinDamage
         }
         public override int CalcHitChance()
         {
@@ -64,18 +50,16 @@ namespace DungeonLibrary
         }
         public override string ToString()
         {
-            //create a holding variable for the description
-            //Then Switch on CharacterRace property
-            //description = (whatever race description is)
-            //case CharacterRace.Elf:
+            string description = CharacterRace.ToString().Replace('_', ' ');
+
+            //holding variable for the description
+            //Switch on CharacterRace
+            //case CharacterRace.Elf: 
             //  description = "Describe an Elf"
-            //  break;
+            //  break;            
             return base.ToString() + $"\nWeapon:\n{EquippedWeapon}\nBlock: {Block}\n" +
-                $"Description: {PlayerDescription}";//+some unique description based on the player race.
+                $"Description: {description}";//+some unique description based on the player race.
             //hint, use a switch
         }
-
-
-
-    }//end class
-}//end namespace
+    }
+}

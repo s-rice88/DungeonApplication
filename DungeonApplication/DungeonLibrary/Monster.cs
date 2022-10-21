@@ -8,69 +8,51 @@ namespace DungeonLibrary
 {
     public class Monster : Character
     {
-        //FIELDS
-        //MinDamage as an int - can't be more than MaxDamage, or less than 0
+        //Fields // Funny
+        //MinDamage as an int - can't be more than MaxDamage, or less than 0.
         private int _minDamage;
-        private int _maxDamage;
-        private string? _description;
-        //PROPERTIES
-        public int MaxDamage
-        {
-            get { return _maxDamage; }
-            set { _maxDamage = value; }
-        }
-        public string Description
-        {
-            get { return _description; } 
-            set { _description = value; }
-        }
+
+
+        //Properties // People
+        //MaxDamage as an int
+        public int MaxDamage { get; set; }
+        //Description as a string
+        public string Description { get; set; }
+        //MinDamage as an int - can't be more than MaxDamage, or less than 0.
         public int MinDamage
         {
             get { return _minDamage; }
-            set
-            {
-                _minDamage = (value > 0 && value <= _maxDamage ? value : 1);
-            }
+            set { _minDamage = value > 0 && value <= MaxDamage ? value : 1; }
         }
-        //MinDamage as an int - can't be more than MaxDamage, or less than 0
-        //MaxDamage as an int
-        //Description as a string
+        //Constructors // Collect
 
-        //CONSTRUCTORS
+        //Methods // Monkeys
         public Monster()
         {
         }
 
-        public Monster(string name, int hitChance, int block, int maxLife, int maxDamage, int minDamage, string description) : base(name, hitChance, block, maxLife)
+        public Monster(string name, int maxLife, int hitChance, int block, int maxDamage, int minDamage, string description) : base(name, hitChance, block, maxLife)
         {
             //Remember to set MaxDamage first!!!
             MaxDamage = maxDamage;
             MinDamage = minDamage;
             Description = description;
         }
-
-        //METHODS
-
         public override string ToString()
         {
-            return $"--------- {Name} ---------\n" +
-                   $"{Description}" +//Description
-                   $"\nLife: {Life} of {MaxLife}\n" +
-                   $"Damage: {MinDamage} to {MaxDamage}\n" +
-                   //MinDamage to MaxDamage
+            return $"\n********** MONSTER **********\n" +
+                   $"----- {Name} -----\n" +
+                   $"Life: {Life} of {MaxLife}\n" +
+                   $"Damage: {MinDamage} to {MaxDamage}" +
                    $"Hit Chance: {HitChance}%\n" +
-                   $"Block: {Block}\n";
-                   
+                   $"Block: {Block}" +
+                   $"Description: {Description}";
         }
-
         public override int CalcDamage()
         {
-            Random random = new Random();
-            
-            return random.Next(MinDamage, MaxDamage +1);
-            //return a random number between Monster min and max damage
+            return new Random().Next(MinDamage, MaxDamage + 1);
 
+            //return a random number between Monster min and max damage.
         }
-
     }
 }
