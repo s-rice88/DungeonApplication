@@ -20,12 +20,12 @@ namespace DungeonLibrary
         }
         public Race CharacterRace { get; set; }
         //Race CharacterRace
-        public WeaponType EquippedWeapon { get; set; }
+        public Weapon EquippedWeapon { get; set; }
         //EquippedWeapon Weapon
 
 
         //CONSTRUCTORS
-        public Player(Race characterRace, string name, string playerDescription, WeaponType equippedWeapon, int maxLife, int hitChance, int block) : base(name, hitChance, block, maxLife)
+        public Player(Race characterRace, string name, string playerDescription, Weapon equippedWeapon, int maxLife, int hitChance, int block) : base(name, hitChance, block, maxLife)
         {
             CharacterRace = characterRace;
             EquippedWeapon = equippedWeapon;
@@ -52,14 +52,14 @@ namespace DungeonLibrary
 
         public override int CalcDamage()
         {
-            //return a random value between the weapons min and max damage
-            Random random = new Random();
-            return random.Next();
+            
+            //return a random value between the Weapon's min and max damage
+            return new Random().Next(EquippedWeapon.MinDamage, EquippedWeapon.MaxDamage + 1);
+            //player.EquippedWeapon.MinDamage
         }
         public override int CalcHitChance()
         {
-            Random random = new Random();
-            return random.Next();
+            return HitChance + EquippedWeapon.BonusHitChance;
             //HitChance + Weapon BonusHitChance
         }
         public override string ToString()
@@ -70,12 +70,8 @@ namespace DungeonLibrary
             //case CharacterRace.Elf:
             //  description = "Describe an Elf"
             //  break;
-            return $"------- {Name} -------\n" +
-                $"{CharacterRace}\n" +
-                $"{PlayerDescription}\n" +
-                $"Equipped Weapon: {EquippedWeapon}\n" +
-                $"Character Stats:\n" +
-                $"Life: {MaxLife} Hit Chance: {HitChance} Block: {Block}\n";
+            return base.ToString() + $"\nWeapon:\n{EquippedWeapon}\nBlock: {Block}\n" +
+                $"Description: {PlayerDescription}";//+some unique description based on the player race.
             //hint, use a switch
         }
 
